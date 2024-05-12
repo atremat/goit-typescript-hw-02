@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.list {
+  padding: 24px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  flex-basis: 1159px;
+}
+
+.item {
+  width: calc((100% - 48px) / 3);
+  max-width: 360px;
+  height: 200px;
+  border: 1px solid rgb(128, 128, 128);
+  transition: transform 0.3s ease-in-out;
+}
+
+.item:hover {
+  transform: scale(1.04);
+}

@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.button {
+  height: 2.5rem;
+  border-radius: 4px;
+  background-color: rgb(103, 7, 215);
+  color: aliceblue;
+  border: none;
+  padding: 5px 15px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #0000cd;
+}
