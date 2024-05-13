@@ -7,24 +7,31 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import { animateScroll } from "react-scroll";
+import { IFetchImages, IImage, IModalImage } from "./commonTypes";
+
+interface IScrollOptions {
+  duration: number;
+  smooth: boolean;
+}
 
 const App = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [images, setImages] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [images, setImages] = useState<Array<IImage>>([]); //!
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<IModalImage | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
 
-  const searchImagesWithQuery = async (value) => {
+  const searchImagesWithQuery = async (value: string): Promise<void> => {
     try {
       setLoading(true);
       setTotalPages(null);
-      const resData = await fetchImages(value, page);
+      const resData: IFetchImages = await fetchImages(value, page);
       setTotalPages(resData["total_pages"]);
-      setImages((prev) => [...prev, ...resData.results]);
+      const newImages: Array<IImage> = resData.results;
+      setImages((prev) => [...prev, ...newImages]);
     } catch (err) {
       setIsError(true);
     } finally {
@@ -40,27 +47,27 @@ const App = () => {
     }
   }, [searchValue, page]);
 
-  const handleSearchPressed = (query) => {
+  const handleSearchPressed = (query: string): void => {
     setSearchValue(query);
     setImages([]);
     setPage(1);
   };
 
-  const handleModalClose = () => {
+  const handleModalClose = (): void => {
     setIsModalOpen(false);
   };
 
-  const handleModalOpen = (img) => {
+  const handleModalOpen = (img: IModalImage): void => {
     setIsModalOpen(true);
     setModalImage(img);
   };
 
-  const scrollOptions = {
+  const scrollOptions: IScrollOptions = {
     duration: 500,
     smooth: true,
   };
 
-  const handleMoreClick = async () => {
+  const handleMoreClick = async (): Promise<void> => {
     setPage((prev) => prev + 1);
   };
 

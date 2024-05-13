@@ -1,8 +1,14 @@
 import css from "./ImageCard.module.css";
 import { FaInstagram } from "react-icons/fa";
 import clsx from "clsx";
+import { IImage, IModalImage } from "../../commonTypes";
 
-const ImageCard = ({ imageInfo, onModalOpen }) => {
+type Props = {
+  imageInfo: IImage;
+  onModalOpen: (img: IModalImage) => void;
+};
+
+const ImageCard = ({ imageInfo, onModalOpen }: Props) => {
   const {
     alt_description: alt,
     urls: { small: urlSmall, regular: urlRegular },
