@@ -18,7 +18,7 @@ const App = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [images, setImages] = useState<Array<IImage>>([]); //!
+  const [images, setImages] = useState<Array<IImage>>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<IModalImage | null>(null);
   const [page, setPage] = useState<number>(1);
