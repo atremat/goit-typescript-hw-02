@@ -1,7 +1,10 @@
 import css from "./LoadMoreBtn.module.css";
 import { MdExpandMore } from "react-icons/md";
 
-const LoadMoreBtn = ({ onMoreClick }) => {
+type Props = {
+  onMoreClick: () => Promise<void>;
+};
+const LoadMoreBtn: React.FC<Props> = ({ onMoreClick }) => {
   const handleClick = () => {
     onMoreClick();
   };

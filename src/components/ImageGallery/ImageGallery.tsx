@@ -1,8 +1,14 @@
 import css from "./ImageGallery.module.css";
 
 import ImageCard from "../ImageCard/ImageCard";
+import { IImage, IModalImage } from "../../commonTypes";
 
-const ImageGallery = ({ images, onModalOpen }) => {
+type Props = {
+  images: IImage[];
+  onModalOpen: (img: IModalImage) => void;
+};
+
+const ImageGallery: React.FC<Props> = ({ images, onModalOpen }) => {
   return (
     <div className={css.wrapper}>
       <ul className={css.list}>

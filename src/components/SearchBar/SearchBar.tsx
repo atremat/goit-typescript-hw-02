@@ -2,18 +2,24 @@ import css from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
 import { FaSearch } from "react-icons/fa";
 
-const notify = () => toast.error("This field can not be empty!");
+const notify = (): string => toast.error("This field can not be empty!");
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (e) => {
+type Props = {
+  onSubmit: (query: string) => void;
+};
+
+const SearchBar: React.FC<Props> = ({ onSubmit }) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const inputQuery = e.target.elements.query.value;
+    const inputQuery: string =
+      (e.currentTarget.elements.namedItem("query") as HTMLInputElement)
+        ?.value || "";
     if (inputQuery === "") {
       notify();
       return;
     }
     onSubmit(inputQuery);
-    e.target.reset();
+    e.currentTarget.reset;
   };
 
   return (

@@ -8,7 +8,7 @@ type Props = {
   onModalOpen: (img: IModalImage) => void;
 };
 
-const ImageCard = ({ imageInfo, onModalOpen }: Props) => {
+const ImageCard: React.FC<Props> = ({ imageInfo, onModalOpen }) => {
   const {
     alt_description: alt,
     urls: { small: urlSmall, regular: urlRegular },
